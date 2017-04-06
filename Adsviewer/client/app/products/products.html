@@ -1,0 +1,97 @@
+<form name="product_form">
+    <div class="col-sm-12">
+      <div class="box">
+        <h1>Agregar productos</h1>
+        <!-- <div class="alert alert-info">Shipping will be free, if no weight specified</div> -->
+
+      </div>
+    </div>
+
+  <div class="col-md-12" style="width:100%;">
+      <button type="button" class="btn btn-danger" ng-click="edit({});"><i class="fa fa-plus"></i>&nbsp;Agregar</button>
+      <button type="submit" class="btn btn-info" ng-click="saveProducts(product);"><i class="fa fa-save"></i> &nbsp;Guardar</button>
+      &nbsp;&nbsp;<a ui-sref="productDetail({id:product._id, slug:product.slug})">{{product.name}}</a>
+      <button type="button" class="btn" ng-click="delete(product);" ng-if="product._id"><i class="fa fa-trash"></i>&nbsp;Eliminar</button>
+
+      <hr/>
+      <table class="table table-striped table-responsive"  style="table-layout:fixed;
+         width: 100%;">
+    <thead>
+      <th>SKU</th>
+      <th>Nombre</th>
+      <th>Información</th>
+      <th>Status</th>
+      <th>Precio</th>
+      <th>Activo</th>
+      <th>Imágenes</th>
+      <th>Actualizado</th>
+      <th>usuario</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="product in products">
+          <td ng-hide="product.edit">
+           <a href="" ng-click="$ctrl.filterBySKU(product.sku)">{{product.sku}}</a>
+          </td>
+          <td ng-show="product.edit"><input type="text" ng-model="product.sku"></td>
+          <td ng-hide="product.edit">
+           <a href="" ng-click="$ctrl.filterByName(produt.name)">{{product.name}}</a>
+          </td>
+          <td ng-show="product.edit"><input type="text" ng-model="product.name"></td>
+          <td ng-hide="product.edit">{{product.info}} </td>
+          <td ng-show="product.edit"><input type="text" ng-model="product.info"></td>
+          <td ng-hide="product.edit">
+           <a href="" ng-click="$ctrl.filterByStatus(product.status)">{{product.status}}</a>
+          </td>
+          <td ng-show="product.edit"><input type="text" ng-model="product.status"></td>
+          <td ng-show="product.edit"><input type="number" ng-model="product.price"></td>
+          <td ng-hide="product.edit">{{product.price}}</td>
+          <td ng-hide="product.edit">{{product.active}}</td>
+          <td ng-show="product.edit">{{product.active}}</td>
+          <td ng-hide="product.edit"><img ng-src="{{product.image}}"/></td>
+          <td ng-show="product.edit"><input type="text" ng-model="product.image"></td>
+          <td ng-hide="product.edit">{{product.updated}}</td>
+          <td ng-show="product.edit">{{product.updated}}</td>
+          <td ng-hide="product.edit">{{product.uid}}</td>
+          <td ng-show="product.edit">{{product.uid}}</td>
+          <td ng-hide="product.edit">
+          <button class="btn btn-success" ng-click="$ctrl.toggleEdit($index)">Edit</button>
+          <button class="btn btn-danger" ng-click="$ctrl.delete($index)">Delete</button>
+        </td>
+        <td ng-show="product.edit">
+          <button class="btn btn-primary" ng-click="$ctrl.saveProducts($index)">Save</button>
+          <button class="btn btn-danger" ng-click="$ctrl.toggleEdit($index)">Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+    
+ </table>
+ </div>
+ <div class="col-md-7">
+ <table>
+   <tbody>
+       <td><input type="text" ng-model="newproduct.sku"><label>SKU</label></td>
+       <td><input type="text" ng-model="newproduct.name"><label>Nombre</label></td>
+       <td><input type="text" ng-model="newproduct.info"><label>Información</label></td>
+       <td><input type="number" ng-model="newproduct.price"><label>Precio</label></td>
+      <td>
+      	<select ng-model="newproduct.status"  >
+	        <option disabled selected value>Status</option>
+	        <option value="reserva">Reserva</option>
+	        <option value="bajopedido">Bajo pedido</option>
+	        <option value="stock">En Stock</option>
+      	</select><label>Status</label>
+      </td>
+      <td>
+      	<select ng-model="newproduct.active">
+      		<option disabled selected value>Activo</option>
+      		<option value="true">SI</option>
+      		<option value="false">NO</option>
+     	 </select><label>Activo</label></td>
+     	 <td> <input filepicker type="filepicker" data-fp-services="computer,facebook,dropbox,box" on-success="onSuccess(event.fpfile)" ng-model="newproduct.image" /></td>
+        <button class="btn btn-primary" ng-click="$ctrl.addNewProduct()">Agregar</button>
+   </tbody>
+ 	
+ </table>
+</div>
+</form>
+
