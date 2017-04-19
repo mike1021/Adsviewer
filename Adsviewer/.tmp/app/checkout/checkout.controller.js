@@ -45,6 +45,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         cartera.iva = cart.getSubTotal() * .16;
         cartera.cotizacionDate = utcDate;
         cartera.orderID = that.getCurrentUser().name;
+        cartera.name = cartera.nombrecliente;
+        cartera.mail = cartera.emailcliente;
+        that.$http.post('/api/cotizaciones', cartera).success(function () {
+          cartera = [];
+          cart;
+        }).error(function (error) {
+          console.log('Error');
+        });
       }
     }, {
       key: 'edit',

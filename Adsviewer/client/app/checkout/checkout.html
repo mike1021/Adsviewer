@@ -2,7 +2,9 @@
 	<ngcart-cart template-url="components/ngcart/cart.html"></ngcart-cart>
 </div>
 
-<div class="col-md-5">
+
+<div class="col-md-5" style="padding-bottom: 50px;"">
+    
 
     <div id="order-summary" ng-if="cart.getTotalItems()>0">
         <div class="box-header">
@@ -37,7 +39,7 @@
 
                     <tr class="total">
                         <td>Total</td>
-                        <th>{{cart.getSubTotal()*1.16 | currency}}</tg>
+                        <th>{{cart.getSubTotal()*1.16| currency}}</tg>
                         <!--<th>
                            {{cart.getTotalPriceAfterShipping(shipping , coupon.amount).total  | currency}}
                         </th>-->
@@ -48,8 +50,26 @@
                 </tbody>
             </table>
         </div>
-
+         
+        <button class="btn btn-inverse btn-lg btn-register" type="submit" ng-click="that.add();">Enviar</button>
     </div>
+
 
 </div>
 <!-- /.col-md-3 -->
+<div class="col-md-3" style="padding-left: 35px; padding-top: 35px; ">
+			<table>
+				<tr>
+					<th>Nombre de Cliente</th>
+			   		<td style="padding-left: 10px;margin-bottom: 10px;"><input type="text" name="nombrecliente" ng-model="cartera.nombrecliente"></td>
+			   			
+			   	</tr>
+
+				  <tr>
+				  	<th>Correo eléctronico</th>
+				  	<td style="padding-left: 10px;"><input type="text"  ng-model="cartera.emailcliente"></td>
+				  </tr>
+			    
+			 </table>
+		</div>
+
