@@ -1,0 +1,95 @@
+<style>
+/*td{padding: 0 5px;}*/
+</style>
+
+<div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      <h1>Products</h1>
+      <p ng-show="products.length < 1">No existen productos .</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-md-4" ng-repeat="product in products">
+      <div class="thumbnail">
+        <img ng-src="{{product.image}}" alt="{{product.name}}">
+        <div class="caption">
+          <h3>{{product.name}}</h3>
+          <p>{{product.info | limitTo: 100}} ...</p>
+          <p>{{product.price | currency }}</p>
+          <p>
+            <ngcart-addtocart id="{{product._id}}" quantity="1" quantity-max="9" name="{{product.name}}" price="{{product.price}}" template-url="components/ngcart/addtocart.html" data="product">Agregar</ngcart-addtocart>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+ <button class="btn btn-default pull-left" ng-click="cart.clearItems();" ng-disabled="cart.getTotalCount() <= 0">Limpiar Carrito</button><!-- <ngcart-checkout service="http" settings="{ url:'/checkout' }"></ngcart-checkout>-->
+</div>
+<!--
+<div class="modal-body">
+    <div class="actions-continue">
+        <button class="btn btn-default pull-left" ng-click="cart.clearItems();" ng-disabled="cart.getTotalCount() <= 0">Limpiar lista</button>
+
+        <input type="text" placeholder="Filtrar" class="form-control col-md-4" style="width:250px;margin-left:20px;" ng-model="filterCart" autofocus/>
+
+       <!-- <button value="Proceed to Checkout →" name="proceed" class="btn btn-primary pull-right" onclick="window.location.href='/checkout'" ng-disabled="cart.getTotalCount() <= 0" ng-click="cancel();">Proceder a pagar →</button>-->
+<!--
+        <div class="clearfix"></div>
+    </div><br/>
+
+    <table class="cart table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th></th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- empty cart message -->
+ <!--           <tr ng-hide="cart.getTotalCount() > 0" >
+                <td class="tdCenter" colspan="7">
+                    Lista vacia. &nbsp;&nbsp;<a class="btn btn-primary" href="/" ng-click="cancel();">Agregar productos</a>
+                </td>
+            </tr>
+
+            <tr ng-repeat="item in cart.items | filter: filterCart">
+                <td>{{$index+1}}</td>
+                <td class="product-thumbnail">
+                    <a>
+                        <img ng-src="/assets/clothing/{{item.image}}" alt="{{item.name}}" data-err-src="images/product.jpg" width="54px"/>
+                    </a>
+                </td>
+
+                <td class="product-name">
+                    <a ui-sref="productDetail({id:item.sku, slug:item.slug})" ng-click="cancel();">{{item.name}}</a>
+                </td>
+
+                <td>{{item.price | currency}}</td>
+
+                <td>
+                    <div class="input-group" style="width:105px;">
+                      <div class="input-group-addon btn" ng-disabled="item.quantity <= 1" ng-click="cart.addItem({sku:item.sku, name:item.name, slug:item.slug, mrp:item.mrp, price:item.price}, -1)">-</div>
+                      <input class="form-control" type="text" min="1" step="1" ng-model="item.quantity" ng-change="cart.saveItems()">
+                      <div class="input-group-addon btn" ng-disabled="item.quantity >= 1000" ng-click="cart.addItem({sku:item.sku, name:item.name, slug:item.slug, mrp:item.mrp, price:item.price}, +1)">+</div>
+                    </div>
+                </td>
+
+                <td><span><strong>{{item.price * item.quantity | currency}}</strong></span></td>
+
+                <td class="product-actions">
+                    <a title="Remove this item" class="remove" href="" ng-click="cart.addItem({sku:item.sku}, -10000000)">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
