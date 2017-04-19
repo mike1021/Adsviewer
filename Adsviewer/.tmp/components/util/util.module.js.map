@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../client/components/util/util.module.js"],"names":["angular","module"],"mappings":"AAAA;;AAEAA,QAAQC,MAAR,CAAe,mBAAf,EAAoC,EAApC","file":"util.module.js","sourcesContent":["'use strict';\n\nangular.module('adsviewerApp.util', []);\n"]}
